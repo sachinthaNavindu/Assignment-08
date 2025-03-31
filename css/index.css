@@ -1,0 +1,142 @@
+body {
+    margin: 10px;
+    overflow: hidden;
+  }
+  .box {
+    flex: 1 1 calc(25% - 40px);
+    min-width: 200px;
+    height: 200px;
+    background-color: #f8f9fa;
+    border: 1px solid #121212;
+    padding: 20px;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .dashboard-container {
+    margin-top: 150px;
+    width: 100%;
+    min-height: 25vh;
+    background-color: #a0a3a5;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+  }
+  .box img{
+    height: 30%;
+    width: 30%;
+    object-fit: cover;
+  }
+  section {
+    margin-top: 500px;
+  }
+  h1 {
+    padding-top: 100px;
+    padding-bottom: 20px;
+  }
+  #container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    align-items: flex-start;
+  }
+  .form-section {
+    padding-left: 10px;
+    flex: 1 1 50%;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  .table-section {
+    padding-right: 20px;
+    flex: 1 1 70%;
+    overflow-x: auto;
+  }
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  label {
+    padding-bottom: 5px;
+    padding-top: 20px;
+  }
+  @media (max-width: 1024px) {
+    #container {
+      flex-direction: column;
+    }
+    body {
+      overflow: auto;
+    }
+  }
+  .Order-container {
+    background-color: #dee4e7;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .invoice-container {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+  }
+  .inner-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  #order-management {
+    margin-bottom: 130px;
+  }
+  #order-label {
+    padding-top: 3px;
+    padding-bottom: 2px;
+  }
+  .item-select-inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 1024px) {
+    .Order-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .Order-container {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .header-container h3 {
+      font-size: 1.5rem;
+    }
+
+    .form-section {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    }
+
+  /* Custom navigation link styles */
+.navbar-nav .nav-item .nav-link {
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px; /* Optional: To give the corners a rounded look */
+    transition: background-color 0.3s ease; /* Optional: To add a smooth effect on hover */
+  }
+  
+  .navbar-nav .nav-item .nav-link:hover {
+    background-color: #f1f1f1; /* Optional: Light hover effect */
+    border-color: #121212; /* Optional: Darker border on hover */
+  }
+

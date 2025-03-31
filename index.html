@@ -1,0 +1,405 @@
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <!-- Metadata & Stylesheets -->
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>POS System</title>
+      <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+        crossorigin="anonymous"
+      />
+      <link rel="stylesheet" href="/css/index.css" />
+      <style>
+
+
+      </style>
+    </head>
+    <body>
+      <nav
+        class="navbar navbar-expand-lg bg-primary fixed-top d-flex justify-content-between"
+      >
+        <div class="container-fluid">
+          <a class="navbar-brand text-white fw-bold fs-3" href="#" id="pageHeader"
+            >Dashboard</a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="offcanvas offcanvas-end w-50 bg-primary text-white"
+            tabindex="-1"
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+          >
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end text-center ps-3 ms-auto">
+                <li class="nav-item ms-3">
+                  <a
+                    class="nav-link active text-danger"
+                    aria-current="page"
+                    href="#dashboard"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item ms-3">
+                  <a class="nav-link text-danger" href="#customer-registration"
+                    >Customer</a
+                  >
+                </li>
+                <li class="nav-item ms-3">
+                  <a class="nav-link text-danger" href="#item-registration"
+                    >Item</a
+                  >
+                </li>
+                <li class="nav-item ms-3">
+                  <a class="nav-link text-danger" href="#order-management"
+                    >Order</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <section id="dashboard">
+        <br />
+        <div class="dashboard-container">
+          <div class="box"> <div class="img-container"><img src="/assets/images/customers-icon.jpg" alt="img"><div><span class="cust-count"></span></div></div></div>
+          <div class="box"> <div class="img-container"><img src="/assets/images/box-icon-in-glyph-style-vector.jpg" alt="img"></div><div><span class="item-count"></span></div></div>
+          <div class="box"> <div class="img-container"><img src="/assets/images/cart icon.jpg" alt="img"></div><div><span class="orders-count"></span></div></div>
+          <div class="box"> <div class="img-container"><img src="/assets/images/gear-icon-in-flat-style-cog-wheel-illustration-on-white-isolated-background-gearwheel-cogwheel-business-concept-vector.jpg" alt="img"></div><div><span class="settings"></span></div></div>
+        </div>
+      </section>
+
+      <section id="customer-registration">
+        <h1>Customer Registration</h1>
+        <div id="container">
+          <!-- Customer Registration Form -->
+          <div class="form-section">
+            <label for="customerID" class="form-label">Customer ID</label>
+            <input class="form-control" type="text" id="customerID" disabled />
+
+            <label for="customerName" class="form-label">Customer Name</label>
+            <input class="form-control" type="text" id="customerName" />
+            <span class="text-danger" id="fullNameError"></span>
+            <br />
+
+            <label for="customerAddress" class="form-label"
+              >Customer Address</label
+            >
+            <input class="form-control" type="text" id="customerAddress" />
+            <span class="text-danger" id="addressError"></span>
+            <br />
+
+            <label for="customerSalary" class="form-label">Customer Salary</label>
+            <input class="form-control" type="number" id="customerSalary" />
+            <span class="text-danger" id="salaryError"></span>
+            <br />
+            <br />
+            <br />
+            <div>
+              <button type="button" class="btn btn-primary" id="addCustomerBtn">
+                Add Customer
+              </button>
+              <button type="button" class="btn btn-danger" id="removeCustomerBtn">
+                Remove
+              </button>
+              <button
+                type="button"
+                class="btn btn-warning"
+                id="updateCustomerBtn"
+              >
+                Update
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-danger"
+                id="clearAllCustomersBtn"
+              >
+                Clear All
+              </button>
+            </div>
+          </div>
+
+          <!-- Customer Table -->
+          <div class="table-section">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Customer ID</th>
+                  <th scope="col">Customer Name</th>
+                  <th scope="col">Customer Address</th>
+                  <th scope="col">Customer Salary</th>
+                </tr>
+              </thead>
+              <tbody id="customerTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Item Section -->
+      <section id="item-registration">
+        <h1>Item Form</h1>
+        <div id="container">
+          <!-- Item Add Form -->
+          <div class="form-section">
+            <label for="itemCode" class="form-label">Item Code</label>
+            <input class="form-control" type="text" id="itemCode" disabled />
+
+            <label for="itemName" class="form-label">Item Name</label>
+            <input class="form-control" type="text" id="itemName" />
+            <span class="text-danger" id="itemNameError"></span>
+            <br />
+            <label for="itemQty" class="form-label">Item Quantity</label>
+            <input class="form-control" type="number" id="itemQty" />
+            <span class="text-danger" id="itemQtyError"></span>
+            <br />
+            <label for="itemPrice" class="form-label">Item Price</label>
+            <input class="form-control" type="number" id="itemPrice" />
+            <span class="text-danger" id="itemPriceError"></span>
+            <br />
+            <br />
+            <br />
+            <div>
+              <button type="button" class="btn btn-primary" id="addItemBtn">
+                Add Item
+              </button>
+              <button type="button" class="btn btn-danger" id="removeItemBtn">
+                Remove
+              </button>
+              <button type="button" class="btn btn-warning" id="updateItemBtn">
+                Update
+              </button>
+
+              <button type="button" class="btn btn-danger" id="clearItemBtn">
+                Clear All
+              </button>
+            </div>
+          </div>
+
+          <!-- Item Table -->
+          <div class="table-section">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Item Code</th>
+                  <th scope="col">Item Name</th>
+                  <th scope="col">Item Quantity</th>
+                  <th scope="col">Item Price</th>
+                </tr>
+              </thead>
+              <tbody id="itemTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Order Management Section -->
+      <section id="order-management">
+        <div class="Order-container">
+          <div class="invoice-container">
+            <div class="header-container bg-success ps-3 text-white">
+              <h8>Invoice Details</h8>
+            </div>
+            <div class="form-section">
+              <div class="inner-container">
+                <div>
+                  <label id="order-lable" for="orderID" class="form-label"
+                    >Order ID :</label
+                  >
+                  <input class="form-control" type="text" id="orderID" />
+                </div>
+                <div>
+                  <label id="order-lable" for="orderDate" class="form-label"
+                    >Order Date :</label
+                  >
+                  <input class="form-control" type="date" id="orderDate" />
+                </div>
+                <div>
+                  <label id="order-lable" for="customer" class="form-label"
+                    >Customer :</label
+                  >
+                  <select class="form-control" id="customerSelect">
+                    <option value="select customer">Select customer</option>
+                  </select>
+                </div>
+                <div>
+                  <label id="order-lable" for="customerID" class="form-label"
+                    >Customer ID :</label
+                  >
+                  <input class="form-control" type="text" id="ordercustomerID" />
+                </div>
+                <div>
+                  <label id="order-lable" for="customerName" class="form-label"
+                    >Name :</label
+                  >
+                  <input class="form-control" type="text" id="ordercustomerName" />
+                </div>
+                <div>
+                  <label id="order-lable" for="customerSalary" class="form-label"
+                    >Salary :</label
+                  >
+                  <input class="form-control" type="text" id="ordercustomerSalary" />
+                </div>
+              </div>
+              <br />
+              <label id="order-lable" for="customerAddress" class="form-label"
+                >Address :</label
+              >
+              <input class="form-control" type="text" id="ordercustomerAddress" />
+
+              <br />
+            </div>
+          </div>
+          <div class="invoice-container" style="position: relative">
+            <div class="header-container bg-success ps-3 text-white">
+              <h8>Item Select</h8>
+            </div>  
+            <div class="form-section">
+              <div class="inner-container">
+                <div>
+                  <label id="order-lable" for="Item" class="form-label"
+                    >Item :</label
+                  >
+                  <select class="form-control" id="itemSelect">
+                    <option value="select customer">Select Item</option>
+                  </select>
+                </div>
+                <div>
+                  <label id="order-lable" for="ItemCode" class="form-label"
+                    >Item Code :</label
+                  >
+                  <input class="form-control" type="text" id="orderitemCode" />
+                </div>
+              </div>
+              <br />
+              <div class="item-select-inner">
+                <div>
+                  <label id="order-lable" for="ItemName" class="form-label"
+                    >Item Name :</label
+                  >
+                  <input class="form-control" type="text" id="orderitemName" />
+                </div>
+                <div>
+                  <label id="order-lable" for="ItemPrice" class="form-label"
+                    >Price :</label
+                  >
+                  <input class="form-control" type="text" id="orderitemPrice" />
+                </div>
+                <div>
+                  <label id="order-lable" for="ItemQty" class="form-label"
+                    >QtyOnH :</label
+                  >
+                  <input class="form-control" type="text" id="QtyOnH" />
+                </div>
+              </div>
+              <br />
+              <label id="order-lable" for="customerAddress" class="form-label"
+                >Order Quantity :</label
+              >
+              <input
+                class="form-control"
+                type="number"
+                id="orderQuantity"
+                min="1"
+                step="1"
+              />
+              <br />
+              <br />
+              <div>
+                <button type="button" class="btn btn-danger" id="btn-addorder">Add to Order</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-control">
+            <br />
+            <div class="text-center">
+              <p class="text-primary fs-2" id="total">Total : 00.0Rs/=</p>
+              <p class="text-danger fs-2" id="subTotal">SubTotal : 00.0Rs/=</p>
+            </div>
+            <br />
+            <div class="inner-container">
+              <div>
+                <label id="order-lable" for="cash" class="form-label"
+                  >Cash :</label
+                >
+                <input class="form-control" type="text" id="cash" />
+              </div>
+              <div>
+                <label id="order-lable" for="discount" class="form-label"
+                  >Discount :</label
+                >
+                <input class="form-control" type="text" id="discount" />
+              </div>
+            </div>
+            <div>
+              <label id="order-lable" for="balance" class="form-label"
+                >Balance :</label
+              >
+              <input class="form-control" type="text" id="balance" />
+            </div>
+            <br />
+            <div class="text-center">
+              <button type="button" class="btn btn-success">Purchase</button>
+            </div>
+          </div>
+        </div>
+
+        <table class="table table-bordered" id="orderItemsTable">
+          <thead>
+              <tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Qty</th>
+                  <th>Total</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- Order items will appear here -->
+          </tbody>
+      </table>
+      </section>
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"
+      ></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+      <script src="/model/CustomerModel.js"></script>
+      <script src="/model/ItemModel.js"></script>
+      <script src="/model/Orders.js"></script>
+
+      <script src="/db/db.js"></script>
+
+      <script src="/controller/CustomerController.js"></script>
+      <script src="/controller/IndexController.js"></script>
+      <script src="/controller/ItemController.js"></script>
+      <script src="/controller/OrdersController.js"></script>
+
+      
+    </body>
+  </html>
