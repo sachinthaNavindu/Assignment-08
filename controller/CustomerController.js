@@ -1,7 +1,6 @@
 $(document).ready(function () {
     let selectedCustomerIndex = null;
 
-    // Initialize customer ID and table
     generatedCustomerId();
     updateTable();
 
@@ -20,7 +19,6 @@ $(document).ready(function () {
         };
     }
 
-    // Field validation functions
     validateField("#customerName", "#fullNameError", "Please input Customer Full Name!", function(value) {
         return /^[A-Za-z\s]+$/.test(value);
     });
@@ -55,7 +53,6 @@ $(document).ready(function () {
         }
     }
 
-    // Prevent negative numbers in salary field
     $("#customerSalary").on("keydown", function(e) {
         if (e.key === "-") {
             e.preventDefault();
@@ -103,7 +100,6 @@ $(document).ready(function () {
         });
     }
 
-    // Button event handlers
     $("#addCustomerBtn").click(function () {
         if (!isFormValid()) {
             $("input").trigger("blur");
@@ -170,7 +166,6 @@ $(document).ready(function () {
         generatedCustomerId();
     });
 
-    // Global function to select customers
     window.selectCustomer = function (index) {
         selectedCustomerIndex = index;
         const selectedCustomer = customerDB[index];

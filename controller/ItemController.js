@@ -2,7 +2,6 @@ console.log("ItemController.js loaded");
 $(document).ready(function () {
     let selectedItemIndex = null;
 
-    // Initialize the table when page loads
     updateItemTable();
     generatedItemId();
 
@@ -42,26 +41,22 @@ $(document).ready(function () {
     validateField("#itemQty", "#itemQtyError", "Please input Item Quantity!", true);
     validateField("#itemPrice", "#itemPriceError", "Please input Item Price!", true);
 
-    // Add item
     $("#addItemBtn").click(function () {
         let code = $("#itemCode").val();
         let name = $("#itemName").val().trim();
         let quantity = $("#itemQty").val().trim();
         let price = $("#itemPrice").val().trim();
 
-        // Validate all fields are filled
         if (!isItemValidated()) {
             alert("Please fill all required fields with valid data!");
             return;
         }
 
-        // Validate quantity and price are positive numbers
         if (parseFloat(quantity) <= 0 || parseFloat(price) <= 0) {
             alert("Quantity and Price must be positive numbers!");
             return;
         }
 
-        // Check if item code already exists
         const itemExists = itemDB.some(item => item.itemCode === code);
         
         if (itemExists) {
@@ -69,7 +64,6 @@ $(document).ready(function () {
             return;
         }
 
-        // Only proceed if valid
         var item = {
             itemCode: code,
             itemName: name,
@@ -83,7 +77,6 @@ $(document).ready(function () {
         generatedItemId();
     });
 
-    // Remove item
     $("#removeItemBtn").click(function () {
         if (selectedItemIndex !== null) {
             if (confirm("Are you sure you want to delete this item?")) {
@@ -98,7 +91,6 @@ $(document).ready(function () {
         }
     });
 
-    // Update item
     $("#updateItemBtn").click(function () {
         if (selectedItemIndex === null) {
             alert("Please select an item to update!");
@@ -114,13 +106,11 @@ $(document).ready(function () {
         let quantity = $("#itemQty").val();
         let price = $("#itemPrice").val();
 
-        // Validate quantity and price are positive numbers
         if (parseFloat(quantity) <= 0 || parseFloat(price) <= 0) {
             alert("Quantity and Price must be positive numbers!");
             return;
         }
         
-        // Check if the new code exists for any item other than the one being updated
         const codeExists = itemDB.some((item, index) => 
             index !== selectedItemIndex && item.itemCode === newCode
         );
@@ -143,7 +133,6 @@ $(document).ready(function () {
         generatedItemId();
     });
 
-    // Clear all items
     $("#clearItemBtn").click(function () {
         resetItemForm();
         $("#itemNameError").text("");
@@ -153,7 +142,6 @@ $(document).ready(function () {
         generatedItemId();
     });
 
-    // Add item to table
     function addItemToTable(item) {
         const row = `<tr onclick="selectItem(${itemDB.length - 1})">
                         <td>${item.itemCode}</td>
@@ -164,7 +152,6 @@ $(document).ready(function () {
         $("#itemTableBody").append(row);
     }
 
-    // Update item table
     function updateItemTable() {
         $("#itemTableBody").empty();
         itemDB.forEach((item, index) => {
@@ -178,7 +165,6 @@ $(document).ready(function () {
         });
     }
 
-    // Select item for update/remove
     window.selectItem = function (index) {
         selectedItemIndex = index;
         const selectedItem = itemDB[index];
@@ -188,14 +174,12 @@ $(document).ready(function () {
         $("#itemPrice").val(selectedItem.unitPrice);
     };
 
-    // Reset item form
     function resetItemForm() {
         $("#itemName").val("");
         $("#itemQty").val("");
         $("#itemPrice").val("");
     }
 
-    // Validation check for item fields
     function isItemValidated() {
         const name = $("#itemName").val().trim();
         const quantity = $("#itemQty").val().trim();

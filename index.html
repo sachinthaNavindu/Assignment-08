@@ -1,7 +1,6 @@
   <!DOCTYPE html>
   <html lang="en">
     <head>
-      <!-- Metadata & Stylesheets -->
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>POS System</title>
@@ -12,10 +11,7 @@
         crossorigin="anonymous"
       />
       <link rel="stylesheet" href="/css/index.css" />
-      <style>
-
-
-      </style>
+   
     </head>
     <body>
       <nav
@@ -94,7 +90,6 @@
       <section id="customer-registration">
         <h1>Customer Registration</h1>
         <div id="container">
-          <!-- Customer Registration Form -->
           <div class="form-section">
             <label for="customerID" class="form-label">Customer ID</label>
             <input class="form-control" type="text" id="customerID" disabled />
@@ -142,7 +137,6 @@
             </div>
           </div>
 
-          <!-- Customer Table -->
           <div class="table-section">
             <table class="table table-bordered">
               <thead>
@@ -159,11 +153,9 @@
         </div>
       </section>
 
-      <!-- Item Section -->
       <section id="item-registration">
         <h1>Item Form</h1>
         <div id="container">
-          <!-- Item Add Form -->
           <div class="form-section">
             <label for="itemCode" class="form-label">Item Code</label>
             <input class="form-control" type="text" id="itemCode" disabled />
@@ -199,7 +191,6 @@
             </div>
           </div>
 
-          <!-- Item Table -->
           <div class="table-section">
             <table class="table table-bordered">
               <thead>
@@ -216,7 +207,6 @@
         </div>
       </section>
 
-      <!-- Order Management Section -->
       <section id="order-management">
         <div class="Order-container">
           <div class="invoice-container">
@@ -378,7 +368,6 @@
               </tr>
           </thead>
           <tbody>
-              <!-- Order items will appear here -->
           </tbody>
       </table>
       </section>
@@ -399,7 +388,7 @@
       <script src="/controller/IndexController.js"></script>
       <script src="/controller/ItemController.js"></script>
       <script src="/controller/OrdersController.js"></script>
-
+      <script src="/controller/Home.js"></script>
       
     </body>
   </html>

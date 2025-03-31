@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // DOM Elements
     let customerSelect = document.getElementById("customerSelect");
     let itemSelect = document.getElementById("itemSelect");
     let orderTable = document.querySelector("#orderItemsTable tbody");
@@ -11,23 +10,20 @@ document.addEventListener("DOMContentLoaded", function () {
     let orderButton = document.querySelector("#btn-addorder");
     let purchaseButton = document.querySelector(".btn-success");
 
-    // State variables
     let totalAmount = 0;
     let orderItems = [];
    
 
-    // Initialize form
     generateOrderId();
     document.getElementById("orderDate").valueAsDate = new Date();
     document.getElementById("discount").value = "0";
 
-    // Generate order ID function
     function generateOrderId() {
         let nextNumber;
         
         if (ordersDB.length > 0) {
             const lastId = ordersDB[ordersDB.length - 1].id;
-            const numericPart = lastId.replace(/\D/g, ''); // Remove non-digits
+            const numericPart = lastId.replace(/\D/g, ''); 
             nextNumber = parseInt(numericPart) + 1;
         } else {
             nextNumber = 1;
@@ -37,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("orderID").value = formattedNumber;
     }
 
-    // Update all totals (total, subtotal, balance)
     function updateTotals() {
         const discount = parseFloat(discountInput.value) || 0;
         const subtotal = totalAmount - discount;
@@ -49,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
         balanceInput.value = balance >= 0 ? balance.toFixed(2) : "Insufficient Cash";
     }
 
-    // Populate customer dropdown
     customerSelect.addEventListener("click", function() {
         for(let i = customerSelect.options.length - 1; i > 0; i--) {
             customerSelect.remove(i);
@@ -62,7 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Populate item dropdown
     itemSelect.addEventListener("click", function() {
         for(let i = itemSelect.options.length - 1; i > 0; i--) {
             itemSelect.remove(i);
@@ -75,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Customer selection handler
     customerSelect.addEventListener("change", function() {
         let selectedCustomer = customerDB.find(c => c.id === this.value);
         if (selectedCustomer) {
@@ -86,7 +78,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Item selection handler
     itemSelect.addEventListener("change", function() {
         let selectedItem = itemDB.find(i => i.itemCode === this.value);
         if (selectedItem) {
@@ -98,7 +89,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Add to order button handler
     orderButton.addEventListener("click", function() {
         let itemCode = document.getElementById("orderitemCode").value;
         let itemName = document.getElementById("orderitemName").value;
@@ -106,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
         let qtyOnHand = parseInt(document.getElementById("QtyOnH").value);
         let orderQty = parseInt(document.getElementById("orderQuantity").value);
         
-        // Validation
         if (!itemCode) {
             alert("Please select an item first!");
             return;
@@ -122,7 +111,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
         
-        // Check if item exists in order
         let existingItemIndex = orderItems.findIndex(item => item.code === itemCode);
         
         if (existingItemIndex >= 0) {
@@ -146,14 +134,12 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
         
-        // Update totals
         totalAmount = orderItems.reduce((sum, item) => sum + item.total, 0);
         updateOrderTable();
         updateTotals();
         document.getElementById("orderQuantity").value = "";
     });
 
-    // Update order table function
     function updateOrderTable() {
         orderTable.innerHTML = "";
         orderItems.forEach(item => {
@@ -169,11 +155,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Input event listeners for real-time updates
     cashInput.addEventListener("input", updateTotals);
     discountInput.addEventListener("input", updateTotals);
 
-    // Purchase button handler
     purchaseButton.addEventListener("click", function() {
         if (orderItems.length === 0) {
             alert("Please add items to the order before purchasing!");
@@ -189,10 +173,8 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
     
-        // Get current order details
         const currentOrderId = document.getElementById("orderID").value;
     
-        // Update inventory
         orderItems.forEach(orderedItem => {
             const itemIndex = itemDB.findIndex(item => item.itemCode === orderedItem.code);
             if (itemIndex !== -1) {
@@ -200,7 +182,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     
-        // Create and save order
         const newOrder = {
             id: currentOrderId,
             date: new Date().toISOString(),
@@ -213,13 +194,11 @@ document.addEventListener("DOMContentLoaded", function () {
         };
         ordersDB.push(newOrder);
         
-        // Persist data
         localStorage.setItem('itemDB', JSON.stringify(itemDB));
         localStorage.setItem('ordersDB', JSON.stringify(ordersDB));
         
         alert(`Purchase successful! Order ID: ${currentOrderId}\nBalance: Rs. ${(cash - subtotal).toFixed(2)}`);
     
-        // Reset form
         orderItems = [];
         totalAmount = 0;
         orderTable.innerHTML = "";
@@ -229,7 +208,6 @@ document.addEventListener("DOMContentLoaded", function () {
         discountInput.value = "0";
         balanceInput.value = "";
         
-        // Clear selections
         customerSelect.value = "select customer";
         document.getElementById("ordercustomerID").value = "";
         document.getElementById("ordercustomerName").value = "";
@@ -242,7 +220,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("orderitemPrice").value = "";
         document.getElementById("QtyOnH").value = "";
         
-        // Generate new order ID
         generateOrderId();
     });
 });
